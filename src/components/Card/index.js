@@ -1,28 +1,12 @@
 import React, {Component} from 'react';
 import './style.css';
 class Card extends Component {
-  constructor (props) {
-      super(props);
-      this.state = {
-    clicked : "no"
-  };
-  }
-  
-  clicked = () =>{
-    this.setState({
-      clicked : "yes"
-    })
-  }
   render(props) {
     return (
-      <div className="card col-md-3 col-4"
-        onClick = {() => {this.clicked(); this.props.onClick();}}
+      <div className="card"
+        onClick = {() => {this.props.onClick(this.props.id);}}
+        style={{backgroundImage:"url("+this.props.image}}
       >
-        <img className="card-img-top" src={this.props.image} alt={this.props.name}/>
-        <div className="card-body">
-            <h6 className= "card-title">{this.state.clicked}</h6>
-        </div>
-        
       </div>
     );
   };

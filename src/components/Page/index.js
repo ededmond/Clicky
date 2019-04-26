@@ -7,13 +7,35 @@ class Page extends Component {
   state = {
     score: 0,
     topScore: 0,
-    guess: "wrong",
+    guess: "Click on an image!",
     images: images
   };
-  refresh = () => {
+  refresh = id => {
+    console.log(id);
+    console.log(this.state.images);
+    if (!this.state.images[id].clicked) { //haven't clicked on this 
+      let score = this.state.score +1;
+      let topScore = (score > this.state.topScore) ? score : this.state.topScore;
+        //if you've won, clear the images
+      let newImages = this.state.images;
+      newImages[id].clicked = true;
+      newImages = (score >= images.length) ? [] : newImages.sort(() => Math.random() - 0.5)
+      let guess  = (score >= images.length) ? "You win!" : "Correct!"
       this.setState({
-          images: images.sort(() => Math.random() - 0.5)
+          images: newImages,
+          score,
+          topScore,
+          guess
       })
+    } else {  //lose the game
+      alert("You lose");
+      this.setState({
+        images:images,
+        score: 0,
+        guess: "Wrong!"
+      });
+    }
+      
   }
   render() {
     return (
@@ -24,17 +46,22 @@ class Page extends Component {
           guess = {this.state.guess}
         />
         <div className = "container">
-            <div className = "row">
+          <div className = "row">
             {
-                this.state.images.map(image => (
+                this.state.images.map((image,i) => (
                     <Card
+                    key = {i}
+                    id={i}
                     name={image.name}
                     image={image.image}
                     onClick = {this.refresh}
                     />
                 ))
             }
-            </div>
+          </div>
+          <div className ="row">
+            {(this.state.images.length > 0) || <button>Play Again?</button>}
+          </div>
         </div>
       </div>
     );
