@@ -11,28 +11,34 @@ class Page extends Component {
     images: images
   };
   refresh = id => {
-    console.log(id);
-    console.log(this.state.images);
     if (!this.state.images[id].clicked) { //haven't clicked on this 
       let score = this.state.score +1;
       let topScore = (score > this.state.topScore) ? score : this.state.topScore;
-        //if you've won, clear the images
-      let newImages = this.state.images;
-      newImages[id].clicked = true;
-      newImages = (score >= images.length) ? [] : newImages.sort(() => Math.random() - 0.5)
-      let guess  = (score >= images.length) ? "You win!" : "Correct!"
-      this.setState({
-          images: newImages,
-          score,
-          topScore,
-          guess
-      })
+      
+      //if you've won, clear the images
+      if (score >= images.length) {
+        this.setState({
+          images: [],
+          score: 0,
+          topScore: score,
+          guess: "You Win!"
+        })
+      } else {
+        let newImages = this.state.images;
+        newImages[id].clicked = true;
+        newImages = newImages.sort(() => Math.random() - 0.5)
+        this.setState({
+            images: newImages,
+            score,
+            topScore,
+            guess : "Correct!"
+        })
+      }
     } else {  //lose the game
-      alert("You lose");
       this.setState({
-        images:images,
+        images:[],
         score: 0,
-        guess: "Wrong!"
+        guess: "You Lose!"
       });
     }
       
@@ -59,9 +65,12 @@ class Page extends Component {
                 ))
             }
           </div>
-          <div className ="row">
-            {(this.state.images.length > 0) || <button>Play Again?</button>}
-          </div>
+          {(this.state.images.length > 0) ||<div className ="row">
+            <div className="col-12">
+              <h2 className="text-center">{this.state.guess}</h2>
+              <button className ="btn text-center col-12">Play Again?</button>
+            </div>
+          </div>}
         </div>
       </div>
     );

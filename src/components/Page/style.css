@@ -1,0 +1,8 @@
+.btn {
+    background-color: maroon;
+    color: white;
+}
+.btn:hover {
+    color: white;
+    font-weight: bold;
+}
