@@ -13,3 +13,8 @@
     cursor: pointer;
     transform:scale(1.1);
 }
+
+.hardmode {
+    width: 130px;
+    height: 130px;
+}
