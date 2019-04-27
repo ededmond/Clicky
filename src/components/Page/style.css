@@ -1,4 +1,10 @@
+.end-screen {
+    margin:20px;
+    padding:20px;
+}
+
 .btn {
+    margin-top:50px;
     background-color: maroon;
     color: white;
 }
