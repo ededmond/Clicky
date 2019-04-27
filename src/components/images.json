@@ -14,5 +14,37 @@
     "name": "Thor",
     "image": "./assets/images/thor.jpg",
     "clicked":false
+},{
+    "name": "Black Widow",
+    "image": "./assets/images/black-widow.jpg",
+    "clicked":false
+},{
+    "name": "Hawkeye",
+    "image": "./assets/images/hawkeye.jpg",
+    "clicked":false
+},{
+    "name": "Nick Fury",
+    "image": "./assets/images/nick-fury.jpg",
+    "clicked":false
+},{
+    "name": "Shuri",
+    "image": "./assets/images/shuri.jpg",
+    "clicked":false
+},{
+    "name": "Black Panther",
+    "image": "./assets/images/t-challa.jpg",
+    "clicked":false
+},{
+    "name": "Vision",
+    "image": "./assets/images/vision.jpg",
+    "clicked":false
+},{
+    "name": "Star Lord",
+    "image": "./assets/images/star-lord.jpg",
+    "clicked":false
+},{
+    "name": "Captain Marvel",
+    "image": "./assets/images/captain-marvel.jpg",
+    "clicked":false
 }
 ]

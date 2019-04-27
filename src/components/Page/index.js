@@ -14,7 +14,6 @@ class Page extends Component {
     if (!this.state.images[id].clicked) { //haven't clicked on this 
       let score = this.state.score +1;
       let topScore = (score > this.state.topScore) ? score : this.state.topScore;
-      
       //if you've won, clear the images
       if (score >= images.length) {
         this.setState({
@@ -41,7 +40,14 @@ class Page extends Component {
         guess: "You Lose!"
       });
     }
-      
+  }
+  again = () =>{
+    for (let i=0; i < images.length; i++) {
+      images[i].clicked = false;
+    }
+    this.setState({
+      images:images
+    })
   }
   render() {
     return (
@@ -68,7 +74,9 @@ class Page extends Component {
           {(this.state.images.length > 0) ||<div className ="row">
             <div className="col-12">
               <h2 className="text-center">{this.state.guess}</h2>
-              <button className ="btn text-center col-12">Play Again?</button>
+              <button className ="btn text-center col-12"
+                onClick={this.again}
+              >Play Again?</button>
             </div>
           </div>}
         </div>
