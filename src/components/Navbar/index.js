@@ -11,7 +11,7 @@ function Navbar (props) {
                 {props.guess}
             </div>
             <div className = "col-4">
-                Score: {props.score} | Top Score: {props.topScore}
+                Score: {props.score} | {props.wins > 0 ? ("Total Wins: " + props.wins) : ("Top Score: "+props.topScore)}
             </div>
         </nav>
     )

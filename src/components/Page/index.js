@@ -7,6 +7,7 @@ class Page extends Component {
   state = {
     score: 0,
     topScore: window.localStorage.getItem("clicky-topScore") || 0,
+    wins: window.localStorage.getItem("clicky-wins") || 0,
     guess: "Click on an image!",
     images: images
   };
@@ -26,8 +27,10 @@ class Page extends Component {
           images: [],
           score: 0,
           topScore: score,
+          wins: this.state.wins + 1,
           guess: "You Win!"
         })
+        window.localStorage.setItem("clicky-wins",this.state.wins);
       } else {
         let newImages = this.state.images;
         newImages[id].clicked = true;
@@ -62,6 +65,7 @@ class Page extends Component {
           score = {this.state.score}
           topScore = {this.state.topScore}
           guess = {this.state.guess}
+          wins = {this.state.wins}
         />
         <div className = "container">
           <div className = "row">
