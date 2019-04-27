@@ -11,3 +11,5 @@ How to play:
     When you click an image more than once, the screen will display a message telling you that you have lost and asking if you would like to play again. Clicking Play Again restarts the game (all images are marked as having never been clicked)
 
     If you manage to click every single image exactly once, the screen will display a message saying "You won!" and you will be asked if you would like to play again.
+
+    Once you have one once, the top score at the top right will be replaced with the number of times you have won the game. This is also stored in local storage.
