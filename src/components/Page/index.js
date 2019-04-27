@@ -9,7 +9,8 @@ class Page extends Component {
     topScore: window.localStorage.getItem("clicky-topScore") || 0,
     wins: window.localStorage.getItem("clicky-wins") || 0,
     guess: "Click on an image!",
-    images: images
+    images: images.slice(4),
+    hard: false
   };
   refresh = id => {
     if (!this.state.images[id].clicked) { //haven't clicked on this 
@@ -19,18 +20,20 @@ class Page extends Component {
       if (score > this.state.topScore) {
         topScore = score;
         //set local storage
-        window.localStorage.setItem("clicky-topScore",score);
+        const scoreName = this.state.hard ? "clicky-hard-topScore" : "clicky-topScore"
+        window.localStorage.setItem(scoreName,score);
       }
       //if you've won, clear the images
-      if (score >= images.length) {
+      if (score >= this.state.images.length) {
+        const winName = this.state.hard ? "clicky-hard-wins" : "clicky-wins"
+        window.localStorage.setItem(winName,parseInt(this.state.wins) +1);
         this.setState({
           images: [],
           score: 0,
           topScore: score,
-          wins: this.state.wins + 1,
+          wins: parseInt(this.state.wins) + 1,
           guess: "You Win!"
         })
-        window.localStorage.setItem("clicky-wins",this.state.wins);
       } else {
         let newImages = this.state.images;
         newImages[id].clicked = true;
@@ -55,8 +58,23 @@ class Page extends Component {
       images[i].clicked = false;
     }
     this.setState({
-      images:images
+      images:this.state.hard ? images : images.slice(4)
     })
+  }
+  switchDifficulty = () => {
+    if (this.state.score > 0) {
+      //setup warning
+    } else {
+      const newImages = this.state.hard ? images.slice(4) :images
+      const scoreName = this.state.hard ? "clicky-topScore" : "clicky-hard-topScore"
+      const winName = this.state.hard ? "clicky-wins" : "clicky-hard-wins"
+      this.setState({
+        hard: !this.state.hard,
+        images: newImages,
+        topScore: window.localStorage.getItem(scoreName) || 0,
+        wins: window.localStorage.getItem(winName) || 0
+      })
+    }
   }
   render() {
     return (
@@ -66,17 +84,20 @@ class Page extends Component {
           topScore = {this.state.topScore}
           guess = {this.state.guess}
           wins = {this.state.wins}
+          hard = {this.state.hard}
+          onClick = {this.switchDifficulty}
         />
-        <div className = "container">
-          <div className = "row">
+        <div className = {"container " +(this.state.hard && "hard-container")}>
+          <div className = "row ">
             {
                 this.state.images.map((image,i) => (
-                    <Card
+                  <Card
                     key = {i}
                     id={i}
                     name={image.name}
                     image={image.image}
                     onClick = {this.refresh}
+                    hard = {this.state.hard}
                     />
                 ))
             }

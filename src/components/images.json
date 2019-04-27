@@ -1,4 +1,20 @@
 [{
+    "name": "Stan Lee",
+    "image": "./assets/images/stan-lee.jpg",
+    "clicked":false
+},{
+    "name": "Spiderman",
+    "image": "./assets/images/spiderman.jpg",
+    "clicked":false
+},{
+    "name": "Dr. Strange",
+    "image": "./assets/images/dr-strange.jpg",
+    "clicked":false
+},{
+    "name": "Falcon",
+    "image": "./assets/images/falcon.jpg",
+    "clicked":false
+},{
     "name": "Captain America",
     "image": "./assets/images/captain-america.jpg",
     "clicked":false

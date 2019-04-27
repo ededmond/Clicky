@@ -13,3 +13,5 @@ How to play:
     If you manage to click every single image exactly once, the screen will display a message saying "You won!" and you will be asked if you would like to play again.
 
     Once you have one once, the top score at the top right will be replaced with the number of times you have won the game. This is also stored in local storage.
+
+    Client can also click on "Easy Mode" on the navbar to take them to a hard version of the game. This option is only available when a game is not currently in progress (score is 0). The button displays the version they're currently in.
