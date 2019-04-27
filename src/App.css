@@ -39,3 +39,7 @@ body {
 .container {
   max-width: 900px;
 }
+/* for hard mode */
+.hard-container {
+  max-width: 800px;
+}

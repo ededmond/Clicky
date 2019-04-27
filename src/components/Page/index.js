@@ -87,7 +87,7 @@ class Page extends Component {
           hard = {this.state.hard}
           onClick = {this.switchDifficulty}
         />
-        <div className = "container">
+        <div className = {"container " +(this.state.hard && "hard-container")}>
           <div className = "row ">
             {
                 this.state.images.map((image,i) => (
